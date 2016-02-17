@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>robot_pose</name>
+  <version>0.0.1</version>
+  <description>The robot_pose package</description>
+  <maintainer email="procopio.stein@pal-robotics.com">procopiostein</maintainer>
+  <license>Modified BSD</license>
+  <author email="procopio.stein@pal-robotics.com">procopiostein</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>tf</build_depend>
+
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>tf</run_depend>
+</package>
