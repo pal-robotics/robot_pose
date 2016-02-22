@@ -3,9 +3,9 @@
   <name>robot_pose</name>
   <version>0.0.1</version>
   <description>The robot_pose package</description>
-  <maintainer email="procopio.stein@pal-robotics.com">procopiostein</maintainer>
+  <maintainer email="procopio.stein@pal-robotics.com">Procópio Stein</maintainer>
   <license>Modified BSD</license>
-  <author email="procopio.stein@pal-robotics.com">procopiostein</author>
+  <author email="procopio.stein@pal-robotics.com">Procópio Stein</author>
 
   <buildtool_depend>catkin</buildtool_depend>
 

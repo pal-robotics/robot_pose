@@ -8,7 +8,7 @@ int main (int argc, char** argv)
 	ros::init(argc, argv, "robot_pose_publisher");
 	ros::NodeHandle node;
 	ros::Publisher pose_pub = 
-		node.advertise<geometry_msgs::PoseWithCovarianceStamped>("robot_pose", 0);
+		node.advertise<geometry_msgs::PoseWithCovarianceStamped>("robot_pose", 1);
 
 	tf::TransformListener listener;
 
