@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>robot_pose</name>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <description>The robot_pose package</description>
   <maintainer email="procopio.stein@pal-robotics.com">Procópio Stein</maintainer>
   <license>Modified BSD</license>
