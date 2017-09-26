@@ -1,7 +1,8 @@
 
-#include "ros/ros.h"
-#include "geometry_msgs/PoseWithCovarianceStamped.h"
-#include "tf/transform_listener.h"
+#include <ros/ros.h>
+#include <geometry_msgs/PoseWithCovarianceStamped.h>
+#include <geometry_msgs/TransformStamped.h>
+#include <tf2_ros/transform_listener.h>
 
 int main(int argc, char** argv)
 {
@@ -10,7 +11,8 @@ int main(int argc, char** argv)
   ros::Publisher pose_pub =
       node.advertise<geometry_msgs::PoseWithCovarianceStamped>("robot_pose", 1);
 
-  tf::TransformListener listener;
+  tf2_ros::Buffer tf_buffer;
+  tf2_ros::TransformListener listener(tf_buffer);
 
   ros::Rate rate(100);
 
@@ -18,14 +20,14 @@ int main(int argc, char** argv)
 
   while (node.ok())
   {
-    tf::StampedTransform transform;
+    geometry_msgs::TransformStamped map_to_base;
 
     try
     {
-      listener.waitForTransform("map", "base_footprint", ros::Time(0), ros::Duration(1.0));
-      listener.lookupTransform("map", "base_footprint", ros::Time(0), transform);
+      map_to_base = tf_buffer.lookupTransform("map", "base_footprint", ros::Time(0),
+                                              ros::Duration(1.0));
     }
-    catch (tf::TransformException ex)
+    catch (tf2::TransformException ex)
     {
       ROS_ERROR("%s", ex.what());
       ros::Duration(1.0).sleep();
@@ -34,14 +36,14 @@ int main(int argc, char** argv)
     robot_pose_msg.header.frame_id = "/map";
     robot_pose_msg.header.stamp = ros::Time::now();
 
-    robot_pose_msg.pose.pose.position.x = transform.getOrigin().x();
-    robot_pose_msg.pose.pose.position.y = transform.getOrigin().y();
-    robot_pose_msg.pose.pose.position.z = transform.getOrigin().z();
+    robot_pose_msg.pose.pose.position.x = map_to_base.transform.translation.x;
+    robot_pose_msg.pose.pose.position.y = map_to_base.transform.translation.y;
+    robot_pose_msg.pose.pose.position.z = map_to_base.transform.translation.z;
 
-    robot_pose_msg.pose.pose.orientation.x = transform.getRotation().x();
-    robot_pose_msg.pose.pose.orientation.y = transform.getRotation().y();
-    robot_pose_msg.pose.pose.orientation.z = transform.getRotation().z();
-    robot_pose_msg.pose.pose.orientation.w = transform.getRotation().w();
+    robot_pose_msg.pose.pose.orientation.x = map_to_base.transform.rotation.x;
+    robot_pose_msg.pose.pose.orientation.y = map_to_base.transform.rotation.y;
+    robot_pose_msg.pose.pose.orientation.z = map_to_base.transform.rotation.z;
+    robot_pose_msg.pose.pose.orientation.w = map_to_base.transform.rotation.w;
 
     pose_pub.publish(robot_pose_msg);
 
