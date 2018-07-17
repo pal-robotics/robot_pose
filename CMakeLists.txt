@@ -6,13 +6,14 @@ project(robot_pose)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
+  pal_statistics
   roscpp
   std_msgs
   tf
 )
 
 catkin_package()
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 ###########
 ## Build ##
 ###########
@@ -31,14 +32,28 @@ target_link_libraries(robot_pose_node
   ${catkin_LIBRARIES}
 )
 
+add_executable(distance_publisher_node 
+  src/distance_publisher.cpp
+)
+
+target_link_libraries(distance_publisher_node
+  ${catkin_LIBRARIES}
+)
+
 #############
 ## Install ##
 #############
 
 # Mark executables and/or libraries for installation
-install(TARGETS robot_pose_node
+install(TARGETS robot_pose_node distance_publisher_node
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+if (CATKIN_ENABLE_TESTING)
+    find_package(rostest REQUIRED)
+    add_rostest_gtest(distance_travelled-test test/distance_travelled.test test/gtest_distance_travelled.cpp)
+    target_link_libraries(distance_travelled-test
+                                ${catkin_LIBRARIES})
+                              endif(CATKIN_ENABLE_TESTING)
