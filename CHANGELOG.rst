@@ -2,8 +2,8 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2018-07-18)
+------------------
 * Merge branch 'add-distance-travelled' into 'erbium-devel'
   Add distance travelled publisher
   See merge request navigation/robot_pose!4
