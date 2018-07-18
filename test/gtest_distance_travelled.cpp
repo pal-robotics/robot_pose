@@ -15,7 +15,7 @@ namespace pal
 TEST(DistanceTravelled, test)
 {
   ros::NodeHandle nh;
-  ros::Publisher pub = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("/amcl_pose", 1);
+  ros::Publisher pub = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("/robot_pose", 1);
   ros::Duration(0.5).sleep();  // Allow subscribers to connect
   geometry_msgs::PoseWithCovarianceStamped msg;
   msg.pose.pose.orientation.w = 1.0;
