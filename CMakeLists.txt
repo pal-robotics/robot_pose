@@ -8,11 +8,12 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   roscpp
   std_msgs
-  tf
+  tf2
+  tf2_geometry_msgs
 )
 
 catkin_package()
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 ###########
 ## Build ##
 ###########
@@ -42,3 +43,10 @@ install(TARGETS robot_pose_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+if (CATKIN_ENABLE_TESTING)
+    find_package(rostest REQUIRED)
+    add_rostest_gtest(robot_pose-test test/robot_pose.test test/gtest_robot_pose.cpp)
+    target_link_libraries(robot_pose-test
+                          ${catkin_LIBRARIES})
+
+endif(CATKIN_ENABLE_TESTING)
