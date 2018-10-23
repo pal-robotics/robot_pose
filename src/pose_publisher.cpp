@@ -39,6 +39,7 @@ int main(int argc, char** argv)
     {
       ROS_ERROR("%s", ex.what());
       ros::Duration(0.1).sleep();
+      continue;
     }
 
     tf2::Transform map_to_odom_tf;
