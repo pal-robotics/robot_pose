@@ -1,7 +1,7 @@
 
 #include <ros/ros.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
-#include <geometry_msgs/TransformStamped.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include <tf2_ros/transform_listener.h>
 
 int main(int argc, char** argv)
@@ -20,34 +20,44 @@ int main(int argc, char** argv)
 
   while (node.ok())
   {
-    geometry_msgs::TransformStamped map_to_base;
+    geometry_msgs::TransformStamped map_to_odom;
+    geometry_msgs::TransformStamped odom_to_base;
 
     try
     {
-      map_to_base = tf_buffer.lookupTransform("map", "base_footprint", ros::Time(0),
-                                              ros::Duration(1.0));
+      // this may not always exist, use the last tf available
+      map_to_odom = tf_buffer.lookupTransform("map", "odom",
+                                              ros::Time(0),
+                                              ros::Duration(0.1));
+
+      // this should always exist, use the tf from now
+      odom_to_base = tf_buffer.lookupTransform("odom", "base_footprint",
+                                              ros::Time::now(),
+                                              ros::Duration(0.1));
     }
     catch (tf2::TransformException ex)
     {
       ROS_ERROR("%s", ex.what());
-      ros::Duration(1.0).sleep();
+      ros::Duration(0.1).sleep();
     }
+
+    tf2::Transform map_to_odom_tf;
+    tf2::Transform odom_to_base_tf;
+    tf2::Transform map_to_base_tf;
+
+    tf2::fromMsg(map_to_odom.transform, map_to_odom_tf);
+    tf2::fromMsg(odom_to_base.transform, odom_to_base_tf);
+
+    map_to_base_tf = map_to_odom_tf * odom_to_base_tf;
+
+    tf2::toMsg(map_to_base_tf, robot_pose_msg.pose.pose);
 
     robot_pose_msg.header.frame_id = "/map";
     robot_pose_msg.header.stamp = ros::Time::now();
-
-    robot_pose_msg.pose.pose.position.x = map_to_base.transform.translation.x;
-    robot_pose_msg.pose.pose.position.y = map_to_base.transform.translation.y;
-    robot_pose_msg.pose.pose.position.z = map_to_base.transform.translation.z;
-
-    robot_pose_msg.pose.pose.orientation.x = map_to_base.transform.rotation.x;
-    robot_pose_msg.pose.pose.orientation.y = map_to_base.transform.rotation.y;
-    robot_pose_msg.pose.pose.orientation.z = map_to_base.transform.rotation.z;
-    robot_pose_msg.pose.pose.orientation.w = map_to_base.transform.rotation.w;
 
     pose_pub.publish(robot_pose_msg);
 
     rate.sleep();
   }
-  return 0;
+  return EXIT_SUCCESS;
 }
