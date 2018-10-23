@@ -1,7 +1,7 @@
 /*
-  @file
+  @file gtest_robot_pose.cpp
 
-  @author victor
+  @author Procópio Stein
 
   @copyright (c) 2018 PAL Robotics SL. All Rights Reserved
 */

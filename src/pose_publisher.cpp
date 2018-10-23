@@ -1,3 +1,10 @@
+/*
+  @file pose_publisher.cpp
+
+  @author Procópio Stein
+
+  @copyright (c) 2018 PAL Robotics SL. All Rights Reserved
+*/
 
 #include <ros/ros.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
