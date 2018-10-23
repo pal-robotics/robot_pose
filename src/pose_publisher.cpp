@@ -14,7 +14,7 @@ int main(int argc, char** argv)
   tf2_ros::Buffer tf_buffer;
   tf2_ros::TransformListener listener(tf_buffer);
 
-  ros::Rate rate(100);
+  ros::Rate rate(50);
 
   geometry_msgs::PoseWithCovarianceStamped robot_pose_msg;
 
