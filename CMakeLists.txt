@@ -8,7 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   roscpp
   std_msgs
-  tf
+  tf2
+  tf2_geometry_msgs
 )
 
 catkin_package()
