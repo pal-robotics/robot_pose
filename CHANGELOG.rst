@@ -2,8 +2,8 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.3 (2018-10-23)
+------------------
 * Merge branch 'tf2-migration' into 'dubnium-devel'
   Tf2 migration
   See merge request navigation/robot_pose!3
