@@ -2,8 +2,8 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.1 (2018-10-23)
+------------------
 * Merge branch 'tf2-migration-erbium' into 'erbium-devel'
   Tf2 migration erbium
   See merge request navigation/robot_pose!5
