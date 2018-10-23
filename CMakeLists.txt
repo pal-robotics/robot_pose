@@ -9,7 +9,8 @@ find_package(catkin REQUIRED COMPONENTS
   pal_statistics
   roscpp
   std_msgs
-  tf
+  tf2
+  tf2_geometry_msgs
 )
 
 catkin_package()
@@ -53,7 +54,13 @@ install(TARGETS robot_pose_node distance_publisher_node
 
 if (CATKIN_ENABLE_TESTING)
     find_package(rostest REQUIRED)
+
     add_rostest_gtest(distance_travelled-test test/distance_travelled.test test/gtest_distance_travelled.cpp)
     target_link_libraries(distance_travelled-test
-                                ${catkin_LIBRARIES})
-                              endif(CATKIN_ENABLE_TESTING)
+                          ${catkin_LIBRARIES})
+
+    add_rostest_gtest(robot_pose-test test/robot_pose.test test/gtest_robot_pose.cpp)
+    target_link_libraries(robot_pose-test
+                          ${catkin_LIBRARIES})
+
+endif(CATKIN_ENABLE_TESTING)
