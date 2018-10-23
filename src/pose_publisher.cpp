@@ -42,7 +42,7 @@ int main(int argc, char** argv)
                                               ros::Time::now(),
                                               ros::Duration(0.1));
     }
-    catch (tf2::TransformException ex)
+    catch (tf2::TransformException &ex)
     {
       ROS_ERROR("%s", ex.what());
       ros::Duration(0.1).sleep();
