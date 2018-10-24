@@ -2,6 +2,14 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'improve-constness' into 'erbium-devel'
+  pal_statistics changed API
+  See merge request navigation/robot_pose!7
+* pal_statistics changed API
+* Contributors: Victor Lopez
+
 1.0.1 (2018-10-23)
 ------------------
 * Merge branch 'tf2-migration-erbium' into 'erbium-devel'
