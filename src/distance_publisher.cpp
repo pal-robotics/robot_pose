@@ -33,7 +33,7 @@ public:
 
   void doPublish()
   {
-    SIMPLE_PUBLISH_STATISTICS();
+    PUBLISH_STATISTICS(DEFAULT_STATISTICS_TOPIC);
   }
 
 protected:
@@ -57,7 +57,7 @@ protected:
   ros::Timer statistics_timer_;
   geometry_msgs::PoseWithCovarianceStampedConstPtr last_pose_;
   double distance_travelled_;
-  pal::RegistrationsRAII registration_raii_;
+  pal_statistics::RegistrationsRAII registration_raii_;
 };
 
 }  // namespace pal
