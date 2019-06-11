@@ -7,7 +7,7 @@
 */
 #include <gtest/gtest.h>
 #include <ros/ros.h>
-#include <geometry_msgs/PoseWithCovarianceStamped.h>
+#include <nav_msgs/Odometry.h>
 #include <std_msgs/Float64.h>
 
 namespace pal
@@ -15,9 +15,9 @@ namespace pal
 TEST(DistanceTravelled, test)
 {
   ros::NodeHandle nh;
-  ros::Publisher pub = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("/robot_pose", 1);
+  ros::Publisher pub = nh.advertise<nav_msgs::Odometry>("/mobile_base_controller/odom", 1);
   ros::Duration(0.5).sleep();  // Allow subscribers to connect
-  geometry_msgs::PoseWithCovarianceStamped msg;
+  nav_msgs::Odometry msg;
   msg.pose.pose.orientation.w = 1.0;
 
   msg.pose.pose.position.x = 1234.0;  // First position shouldn't matter
@@ -38,6 +38,7 @@ TEST(DistanceTravelled, test)
       msg.pose.pose.position.x += step;
       msg.pose.pose.position.y -= 2 * step;
       pub.publish(msg);
+      ros::spinOnce();
       expected_distance += sqrt((step * step) + (2 * step * 2 * step));
     }
     distance_msg = ros::topic::waitForMessage<std_msgs::Float64>("/distance_travelled",
