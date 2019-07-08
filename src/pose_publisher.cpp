@@ -15,20 +15,19 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "robot_pose_publisher");
   ros::NodeHandle node;
-  std::string map_frame("map"), odom_frame("odom"), footprint_frame("base_footprint"),
-      robot_pose_topic("robot_pose");
-  if (argc == 2)
+  ros::NodeHandle priv_nh("~");
+  std::string map_frame, odom_frame, robot_frame, prefix, robot_pose_topic("robot_pose");
+
+  priv_nh.param<std::string>("map_frame", map_frame, "map");
+  priv_nh.param<std::string>("robot_frame", robot_frame, "base_footprint");
+  priv_nh.param<std::string>("odom_frame", odom_frame, "odom");
+  priv_nh.param<std::string>("prefix", prefix, "");
+  if (!prefix.empty())
   {
-    std::string prefix = std::string(argv[1]);
     map_frame = prefix + "/" + map_frame;
     odom_frame = prefix + "/" + odom_frame;
-    footprint_frame = prefix + "/" + footprint_frame;
+    robot_frame = prefix + "/" + robot_frame;
     robot_pose_topic = prefix + "/" + robot_pose_topic;
-  }
-  if (argc > 2)
-  {
-    ROS_ERROR("Usage: rosrun robot_pose robot_pose_node [multi_robot_prefix]");
-    exit(1);
   }
   ros::Publisher pose_pub =
       node.advertise<geometry_msgs::PoseWithCovarianceStamped>(robot_pose_topic, 1);
@@ -52,8 +51,8 @@ int main(int argc, char** argv)
           tf_buffer.lookupTransform(map_frame, odom_frame, ros::Time(0), ros::Duration(0.1));
 
       // this should always exist, use the tf from now
-      odom_to_base = tf_buffer.lookupTransform(odom_frame, footprint_frame,
-                                               ros::Time::now(), ros::Duration(0.1));
+      odom_to_base = tf_buffer.lookupTransform(odom_frame, robot_frame, ros::Time::now(),
+                                               ros::Duration(0.1));
     }
     catch (tf2::TransformException& ex)
     {
