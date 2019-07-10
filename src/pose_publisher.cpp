@@ -15,14 +15,28 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "robot_pose_publisher");
   ros::NodeHandle node;
-  ros::Publisher pose_pub =
-      node.advertise<geometry_msgs::PoseWithCovarianceStamped>("robot_pose", 1);
+  ros::NodeHandle priv_nh("~");
+  std::string map_frame, odom_frame, robot_frame, prefix, robot_pose_topic("robot_pose");
 
+  priv_nh.param<std::string>("map_frame", map_frame, "map");
+  priv_nh.param<std::string>("robot_frame", robot_frame, "base_footprint");
+  priv_nh.param<std::string>("odom_frame", odom_frame, "odom");
+  priv_nh.param<std::string>("prefix", prefix, "");
+  if (!prefix.empty())
+  {
+    map_frame = prefix + "/" + map_frame;
+    odom_frame = prefix + "/" + odom_frame;
+    robot_frame = prefix + "/" + robot_frame;
+    robot_pose_topic = prefix + "/" + robot_pose_topic;
+  }
+  ros::Publisher pose_pub =
+      node.advertise<geometry_msgs::PoseWithCovarianceStamped>(robot_pose_topic, 1);
   tf2_ros::Buffer tf_buffer;
   tf2_ros::TransformListener listener(tf_buffer);
 
   ros::Rate rate(50);
 
+  ros::Duration(0.5).sleep();
   geometry_msgs::PoseWithCovarianceStamped robot_pose_msg;
 
   while (node.ok())
@@ -33,16 +47,14 @@ int main(int argc, char** argv)
     try
     {
       // this may not always exist, use the last tf available
-      map_to_odom = tf_buffer.lookupTransform("map", "odom",
-                                              ros::Time(0),
-                                              ros::Duration(0.1));
+      map_to_odom =
+          tf_buffer.lookupTransform(map_frame, odom_frame, ros::Time(0), ros::Duration(0.1));
 
       // this should always exist, use the tf from now
-      odom_to_base = tf_buffer.lookupTransform("odom", "base_footprint",
-                                              ros::Time::now(),
-                                              ros::Duration(0.1));
+      odom_to_base = tf_buffer.lookupTransform(odom_frame, robot_frame, ros::Time::now(),
+                                               ros::Duration(0.1));
     }
-    catch (tf2::TransformException &ex)
+    catch (tf2::TransformException& ex)
     {
       ROS_ERROR("%s", ex.what());
       ros::Duration(0.1).sleep();
@@ -60,7 +72,7 @@ int main(int argc, char** argv)
 
     tf2::toMsg(map_to_base_tf, robot_pose_msg.pose.pose);
 
-    robot_pose_msg.header.frame_id = "/map";
+    robot_pose_msg.header.frame_id = map_frame;
     robot_pose_msg.header.stamp = ros::Time::now();
 
     pose_pub.publish(robot_pose_msg);
