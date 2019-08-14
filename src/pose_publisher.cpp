@@ -27,7 +27,6 @@ int main(int argc, char** argv)
     map_frame = prefix + "/" + map_frame;
     odom_frame = prefix + "/" + odom_frame;
     robot_frame = prefix + "/" + robot_frame;
-    robot_pose_topic = prefix + "/" + robot_pose_topic;
   }
   ros::Publisher pose_pub =
       node.advertise<geometry_msgs::PoseWithCovarianceStamped>(robot_pose_topic, 1);
