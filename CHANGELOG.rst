@@ -2,6 +2,20 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'multi_robot' into 'erbium-devel'
+  added prefix to topics and tf frames for multi robot usage
+  See merge request navigation/robot_pose!10
+* parameterize the frames and robot prefix
+* added prefix to topics and tf frames for multi robot usage
+* Merge branch 'exetend_statistics' into 'erbium-devel'
+  Use Odom info to compute travelled distance
+  See merge request navigation/robot_pose!9
+* Fix test to use odom
+* Use Odom info to compute travelled distance
+* Contributors: Procópio Stein, Sai Kishor Kothakota, davidfernandez
+
 1.0.2 (2018-10-24)
 ------------------
 * Merge branch 'improve-constness' into 'erbium-devel'
