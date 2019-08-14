@@ -2,6 +2,14 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'prefix-fix' into 'erbium-devel'
+  Don't use prefix on output topic, it should be namespaced
+  See merge request navigation/robot_pose!11
+* Don't use prefix on output topic, it should be namespaced
+* Contributors: Victor Lopez
+
 1.0.3 (2019-08-14)
 ------------------
 * Merge branch 'multi_robot' into 'erbium-devel'
