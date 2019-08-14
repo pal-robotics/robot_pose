@@ -2,8 +2,8 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.3 (2019-08-14)
+------------------
 * Merge branch 'multi_robot' into 'erbium-devel'
   added prefix to topics and tf frames for multi robot usage
   See merge request navigation/robot_pose!10
