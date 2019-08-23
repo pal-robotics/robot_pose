@@ -2,6 +2,11 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix build errors
+* Contributors: Victor Lopez
+
 1.0.4 (2019-08-14)
 ------------------
 * Merge branch 'prefix-fix' into 'erbium-devel'
