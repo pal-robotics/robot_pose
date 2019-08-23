@@ -28,8 +28,8 @@ TEST(RobotPose, test)
         "/robot_pose", ros::Duration(1.0));
 
   EXPECT_TRUE(robot_pose_shared_ptr != NULL);
-  EXPECT_EQ(robot_pose_shared_ptr->pose.pose.position.x, 10);
-  EXPECT_EQ(robot_pose_shared_ptr->pose.pose.position.y, 0);
+  EXPECT_DOUBLE_EQ(robot_pose_shared_ptr->pose.pose.position.x, 10.0);
+  EXPECT_DOUBLE_EQ(robot_pose_shared_ptr->pose.pose.position.y, 0.0);
 
 }
 }  // namespace pal

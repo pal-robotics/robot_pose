@@ -22,6 +22,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 
 include_directories(include)
 include_directories(
+  SYSTEM
   ${catkin_INCLUDE_DIRS}
 )
 
