@@ -2,8 +2,8 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.5 (2019-08-23)
+------------------
 * Fix build errors
 * Contributors: Victor Lopez
 
