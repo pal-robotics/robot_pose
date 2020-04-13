@@ -29,7 +29,7 @@ private:
 
 OdomTf::OdomTf(){
     data_sub_ = nh_.subscribe("/ground_truth_odom", 1, &OdomTf::getInfo, this, ros::TransportHints().tcpNoDelay(true));
-    data_pub_ = nh_.advertise<nav_msgs::Odometry>("/my_odom", 10);
+    data_pub_ = nh_.advertise<nav_msgs::Odometry>("/odom", 10);
 }
 void OdomTf::getInfo(const nav_msgs::Odometry::ConstPtr& msg)
 {   
