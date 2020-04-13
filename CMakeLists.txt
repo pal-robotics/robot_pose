@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
   tf2_geometry_msgs
   nav_msgs
+  tf
 )
 
 catkin_package()
@@ -21,11 +22,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 ###########
 
 include_directories(include)
-include_directories(
-  SYSTEM
-  ${catkin_INCLUDE_DIRS}
-)
-
+include_directories(SYSTEM ${catkin_INCLUDE_DIRS})
 
 add_executable(robot_pose_node 
   src/pose_publisher.cpp
@@ -43,12 +40,21 @@ target_link_libraries(distance_publisher_node
   ${catkin_LIBRARIES}
 )
 
+add_executable(fake_pose_pub
+  src/fake_pose_pub.cpp
+)
+
+target_link_libraries(fake_pose_pub 
+  ${catkin_LIBRARIES}
+)
+
+
 #############
 ## Install ##
 #############
 
 # Mark executables and/or libraries for installation
-install(TARGETS robot_pose_node distance_publisher_node
+install(TARGETS robot_pose_node distance_publisher_node fake_pose_pub
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
