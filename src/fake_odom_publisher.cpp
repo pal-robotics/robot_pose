@@ -17,7 +17,7 @@ public:
     OdomTf();
     void getInfo(const nav_msgs::Odometry::ConstPtr& msg);
     ros::Time current_time;
-    void publishOdom();
+    void run();
     nav_msgs::Odometry odom;
     tf::TransformBroadcaster odom_broadcaster;   
 private:  
@@ -71,18 +71,20 @@ void OdomTf::getInfo(const nav_msgs::Odometry::ConstPtr& msg)
     odom.twist.twist.angular.z = msg->twist.twist.linear.z;
 }
 
-void OdomTf::publishOdom()
+void OdomTf::run()
 {
-    data_pub_.publish(odom);
+    ros::Rate odom_frequency(10);
+    while(ros::ok())
+    {
+        ros::spinOnce();
+        data_pub_.publish(odom);
+        odom_frequency.sleep();
+    }
 }
 
 int main(int argc, char** argv){
     ros::init(argc, argv, "fake_odom_publisher");
     OdomTf odomtf;
-    while(ros::ok())
-    {
-        odomtf.publishOdom();
-        ros::spin();
-    }
+    odomtf.run();
     return 0;
 }
