@@ -77,7 +77,7 @@ void OdomTf::publishOdom()
 }
 
 int main(int argc, char** argv){
-    ros::init(argc, argv, "robot_tf_publisher");
+    ros::init(argc, argv, "fake_odom_publisher");
     OdomTf odomtf;
     while(ros::ok())
     {

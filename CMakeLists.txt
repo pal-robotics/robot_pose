@@ -40,11 +40,11 @@ target_link_libraries(distance_publisher_node
   ${catkin_LIBRARIES}
 )
 
-add_executable(fake_pose_pub
-  src/fake_pose_pub.cpp
+add_executable(fake_odom_publisher
+  src/fake_odom_publisher.cpp
 )
 
-target_link_libraries(fake_pose_pub 
+target_link_libraries(fake_odom_publisher 
   ${catkin_LIBRARIES}
 )
 
@@ -54,7 +54,7 @@ target_link_libraries(fake_pose_pub
 #############
 
 # Mark executables and/or libraries for installation
-install(TARGETS robot_pose_node distance_publisher_node fake_pose_pub
+install(TARGETS robot_pose_node distance_publisher_node fake_odom_publisher
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
