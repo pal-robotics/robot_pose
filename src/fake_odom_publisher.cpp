@@ -33,7 +33,7 @@ private:
 OdomTf::OdomTf(){
     ros::NodeHandle priv_nh("~");
     std::string robot_odom_topic("odom");
-    data_sub_ = nh_.subscribe("/ground_truth_odom", 1, &OdomTf::getInfo, this, ros::TransportHints().tcpNoDelay(true));
+    data_sub_ = nh_.subscribe("ground_truth_odom", 1, &OdomTf::getInfo, this, ros::TransportHints().tcpNoDelay(true));
     data_pub_ = nh_.advertise<nav_msgs::Odometry>(robot_odom_topic, 10);
     priv_nh.param<int>("pub_freq", pub_freq, 10);
     priv_nh.param<std::string>("robot_frame", robot_frame, "base_footprint");
