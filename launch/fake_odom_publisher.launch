@@ -4,7 +4,7 @@
   <arg name="robot_frame" default="base_footprint"/>
   <arg name="robot_prefix" default=""/>
   <arg name="pub_freq" default="10"/>
-  <node pkg="robot_pose" type="fake_odom_publisher" name="fake_robot_publisher">
+  <node pkg="robot_pose" type="fake_odom_publisher" name="fake_odom_publisher" output="screen">
     <param name="pub_freq" type="int" value="$(arg pub_freq)" />
     <param name="odom_frame" type="string" value="$(arg odom_frame)" />
     <param name="robot_frame" type="string" value="$(arg robot_frame)" />
