@@ -73,4 +73,9 @@ if (CATKIN_ENABLE_TESTING)
     target_link_libraries(robot_pose-test
                           ${catkin_LIBRARIES})
 
+    add_rostest_gtest(fake_odom-test test/fake_odom.test test/gtest_fake_odom.cpp)
+    target_link_libraries(fake_odom-test
+                          ${catkin_LIBRARIES})
+
+
 endif(CATKIN_ENABLE_TESTING)
