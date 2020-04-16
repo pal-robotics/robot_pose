@@ -54,7 +54,6 @@ TEST(FakeTf, test)
   }
   catch (tf2::TransformException &ex)
   {
-    ROS_ERROR("&s", ex.what());
     ASSERT_NO_THROW(tf_buffer.canTransform("odom", "base_footprint", ros::Time::now()));
   }
 }
