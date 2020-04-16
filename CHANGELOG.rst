@@ -2,8 +2,8 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.6 (2020-04-16)
+------------------
 * added namespace and play bag in a loop
   also changed name and location of rosbag
 * Fix test and add rosbag for input
