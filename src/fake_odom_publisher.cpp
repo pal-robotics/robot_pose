@@ -11,6 +11,8 @@
 #include <tf2_ros/transform_broadcaster.h>
 #include <nav_msgs/Odometry.h>
 
+namespace pal
+{
 class OdomTf
 {
 public:
@@ -95,11 +97,12 @@ void OdomTf::run()
     odom_frequency.sleep();
   }
 }
+} // namespace pal
 
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "fake_odom_publisher");
-  OdomTf odomtf;
+  pal::OdomTf odomtf;
   odomtf.run();
   return 0;
 }
