@@ -2,6 +2,23 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* added namespace and play bag in a loop
+  also changed name and location of rosbag
+* Fix test and add rosbag for input
+  Rename launch file
+* Add tests for fake_odom
+* removed slash from topic name to allow namespacing
+* fixed launch filename and args
+* Parametrized fake odom
+* use standard odom topic name
+* fixed publisher
+* renamed node
+* fixed structure
+* Add fake pose publisher for gazebo
+* Contributors: Procópio Stein, Sara Cooper, procopiostein
+
 1.0.5 (2019-08-23)
 ------------------
 * Fix build errors
