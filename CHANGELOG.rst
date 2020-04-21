@@ -2,8 +2,8 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.7 (2020-04-21)
+------------------
 * Merge branch 'fix-nodehandle' into 'erbium-devel'
   use global nodehandle
   See merge request navigation/robot_pose!13
