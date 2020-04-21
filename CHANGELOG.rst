@@ -2,6 +2,14 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fix-nodehandle' into 'erbium-devel'
+  use global nodehandle
+  See merge request navigation/robot_pose!13
+* use global nodehandle
+* Contributors: Procópio Stein, procopiostein
+
 1.0.6 (2020-04-16)
 ------------------
 * added namespace and play bag in a loop
