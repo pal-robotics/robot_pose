@@ -33,7 +33,7 @@ private:
 
 OdomTf::OdomTf()
 {
-  ros::NodeHandle priv_nh("~");
+  ros::NodeHandle priv_nh("");
   std::string robot_odom_topic("odom");
   data_sub_ = nh_.subscribe("ground_truth_odom", 1, &OdomTf::getInfo, this,
                             ros::TransportHints().tcpNoDelay(true));
