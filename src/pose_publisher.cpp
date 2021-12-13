@@ -17,11 +17,13 @@ int main(int argc, char** argv)
   ros::NodeHandle node;
   ros::NodeHandle priv_nh("~");
   std::string map_frame, odom_frame, robot_frame, prefix, robot_pose_topic("robot_pose");
+  double transform_timeout;
 
   priv_nh.param<std::string>("map_frame", map_frame, "map");
   priv_nh.param<std::string>("robot_frame", robot_frame, "base_footprint");
   priv_nh.param<std::string>("odom_frame", odom_frame, "odom");
   priv_nh.param<std::string>("prefix", prefix, "");
+  priv_nh.param<double>("transform_timeout", transform_timeout, 0.1);
   if (!prefix.empty())
   {
     map_frame = prefix + "/" + map_frame;
@@ -47,11 +49,11 @@ int main(int argc, char** argv)
     {
       // this may not always exist, use the last tf available
       map_to_odom =
-          tf_buffer.lookupTransform(map_frame, odom_frame, ros::Time(0), ros::Duration(0.1));
+          tf_buffer.lookupTransform(map_frame, odom_frame, ros::Time(0), ros::Duration(transform_timeout));
 
       // this should always exist, use the tf from now
       odom_to_base = tf_buffer.lookupTransform(odom_frame, robot_frame, ros::Time::now(),
-                                               ros::Duration(0.1));
+                                               ros::Duration(transform_timeout));
     }
     catch (tf2::TransformException& ex)
     {
