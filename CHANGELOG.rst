@@ -2,8 +2,8 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.8 (2021-12-14)
+------------------
 * Merge branch 'feature-transform-timeout-as-parameter' into 'erbium-devel'
   Added transform timeout as parameter
   See merge request navigation/robot_pose!15
