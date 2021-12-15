@@ -2,6 +2,15 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fix-lookup-transform' into 'erbium-devel'
+  fix lookup transform
+  See merge request navigation/robot_pose!16
+* updated comment
+* fixed lookup transform
+* Contributors: josegarcia
+
 1.0.8 (2021-12-14)
 ------------------
 * Merge branch 'feature-transform-timeout-as-parameter' into 'erbium-devel'
