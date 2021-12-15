@@ -2,8 +2,8 @@
 Changelog for package robot_pose
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.9 (2021-12-15)
+------------------
 * Merge branch 'fix-lookup-transform' into 'erbium-devel'
   fix lookup transform
   See merge request navigation/robot_pose!16
