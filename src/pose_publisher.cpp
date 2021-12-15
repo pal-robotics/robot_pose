@@ -52,8 +52,8 @@ int main(int argc, char** argv)
           tf_buffer.lookupTransform(map_frame, odom_frame, ros::Time(0), ros::Duration(transform_timeout));
 
       // this should always exist, use the tf from now
-      odom_to_base = tf_buffer.lookupTransform(odom_frame, robot_frame, ros::Time::now(),
-                                               ros::Duration(transform_timeout));
+      odom_to_base = 
+          tf_buffer.lookupTransform(odom_frame, robot_frame, ros::Time(0), ros::Duration(transform_timeout));
     }
     catch (tf2::TransformException& ex)
     {
